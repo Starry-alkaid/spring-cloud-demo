@@ -220,8 +220,10 @@ spring:
             logger-level: full
             connect-timeout: 1000
             read-timeout: 2000
+            
           # 具体 feign 客户端的超时配置
           service-product: //配置的openfeign客户端的名字，也就是@FeignClient中使用value指定的值，微服务的名字。
+          
             logger-level: full
             # 连接超时，3000 毫秒
             connect-timeout: 3000
