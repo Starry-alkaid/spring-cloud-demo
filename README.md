@@ -263,6 +263,10 @@ OpenFeign 的重试规则是：
 
 > 拦截器
 
+请求拦截器：OpenFeign发送远程服务请求时；可为请求做修改（添加请求头）。
+
+响应拦截器：提前拿到响应数据；可做响应预处理。
+
 ![OpenFeign的拦截器](/ATT/img/OpenFeign的拦截器.svg)
 
 以请求拦截器为例，自定义的请求拦截器需要实现 `RequestInterceptor` 接口，并重写 `apply()` 方法：
@@ -279,9 +283,10 @@ public class XTokenRequestInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate template) {
         System.out.println("XTokenRequestInterceptor ...");
-        template.header("X-Token", UUID.randomUUID().toString());
+        template.header("X-Token", UUID.randomUUID().toString())；//请求定制化修改
+        //template.body();
     }
-}
+} 
 ```
 
 要想要该拦截器生效有两种方法：
