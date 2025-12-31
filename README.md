@@ -196,17 +196,20 @@ public Logger.Level feignlogLevel() {
     // 指定 OpenFeign 发请求时，日志级别为 FULL
     return Logger.Level.FULL;
 }
-```
+``` 
 
 > 超时控制
 
-连接超时（connectTimeout），默认 10 秒。
+连接超时（connectTimeout），默认 10 秒。1.建立连接；2.发送请求；3.返回数据。
 
-读取超时（readTimeout），默认 60 秒。
+读取超时（readTimeout），默认 60 秒。超时返回错误信息 
 
 如果需要修改默认超时时间，在配置文件中进行如下配置：
 
-```yaml
+application.yml
+include:feign(配置生效）
+
+application_feign.yml
 spring:
   cloud:
     openfeign:
@@ -218,7 +221,7 @@ spring:
             connect-timeout: 1000
             read-timeout: 2000
           # 具体 feign 客户端的超时配置
-          service-product:
+          service-product: //配置的openfeign客户端的名字，也就是@FeignClient中使用value指定的值，微服务的名字。
             logger-level: full
             # 连接超时，3000 毫秒
             connect-timeout: 3000
