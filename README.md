@@ -207,7 +207,7 @@ public Logger.Level feignlogLevel() {
 如果需要修改默认超时时间，在配置文件中进行如下配置：
 
 ```yml
-include:feign//配置生效
+include:feign#配置生效
 ```
 
 ```yml
@@ -336,7 +336,7 @@ Fallback，即兜底返回。
 
 ```yaml
 feign:
-  sentinel:
+  sentinel:#开启熔断功能
     enabled: true
 ```
 
@@ -361,9 +361,10 @@ public class ProductFeignClientFallback implements ProductFeignClient {
 之后回到对应的 Feign 客户端，配置 Fallback：
 
 ```java
-@FeignClient(value = "service-product", fallback = ProductFeignClientFallback.class)
+@FeignClient(value = "service-product", fallback = ProductFeignClientFallback.class)//调用ProductFeignClientFallback.class进行兜底
 public interface ProductFeignClient {
-
+    //Controller,接受这样的请求
+    //FeignClient,发送这样的请求
     @GetMapping("/product/{id}")
     Product getProductById(@PathVariable("id") Long id);
 }
