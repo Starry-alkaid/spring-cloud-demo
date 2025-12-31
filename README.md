@@ -206,10 +206,11 @@ public Logger.Level feignlogLevel() {
 
 如果需要修改默认超时时间，在配置文件中进行如下配置：
 
-application.yml
-include:feign(配置生效）
+```yml
+include:feign//配置生效
+```
 
-application_feign.yml
+```yml
 spring:
   cloud:
     openfeign:
@@ -222,7 +223,7 @@ spring:
             read-timeout: 2000
             
           # 具体 feign 客户端的超时配置
-          service-product: //配置的openfeign客户端的名字，也就是@FeignClient中使用value指定的值，微服务的名字。
+          service-product: //配置的openfeign客户端的名字，也就是@FeignClient中使用value指定的值，微服务的名字.  
           
             logger-level: full
             # 连接超时，3000 毫秒
